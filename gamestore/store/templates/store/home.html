@@ -1,0 +1,47 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Таверна</h1>
+        <p class="lead text-muted">
+          "Taverna" - это платформа для покупки и публикации игр, которая предоставляет возможность пользователям обмениваться играми, созданными независимыми разработчиками. На этой платформе можно найти широкий выбор игр различных жанров и тематик, включая стратегии, ролевые игры, головоломки и многие другие.
+
+Пользователи могут покупать игры как отдельно, так и в виде пакетов, а также оценивать их и оставлять отзывы, что помогает другим пользователям сделать выбор. "Taverna" также предоставляет возможность разработчикам опубликовывать свои игры на платформе и продавать их напрямую пользователям.
+
+Платформа "Taverna" имеет простой и интуитивно понятный интерфейс, который делает процесс покупки и публикации игр максимально удобным и эффективным. Кроме того, на платформе регулярно проводятся распродажи и специальные акции, что позволяет пользователям приобретать игры по более выгодным ценам.
+        <p>
+        <p>
+          <a href="{% url 'sale' %}" class="btn btn-primary my-2">Распродажа</a>
+          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+{% for game in games %}
+    <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <h1>{{ game.title }}</h1>
+                <p class="card-text">{{ game.description }}</p>
+                <b>${{ game.price }}</b>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'game' game.pk %}" role="button">View</a>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button>
+                </div>
+                <small class="text-muted">{{ game.author }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endfor %}
+</div>
+    </div>
+  </div>
+{% endblock %}
